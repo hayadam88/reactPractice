@@ -9,6 +9,7 @@ class App extends Component {
       user: {
         user: '',
         city: '',
+        zip: '',
       }
     };
 
@@ -16,6 +17,7 @@ class App extends Component {
     // the same as 'this' in the constructor
     this.handleUserChange = this.handleUserChange.bind(this);
     this.handleCityChange = this.handleCityChange.bind(this);
+    this.handleZipChange = this.handleZipChange.bind(this);
   }
 
 
@@ -23,8 +25,8 @@ class App extends Component {
     console.log(event.target.value)
     this.setState({
       user: {
+        ...this.state.user,
         user: event.target.value,
-        city: this.state.user.city
       }
     })
   }
@@ -33,21 +35,32 @@ class App extends Component {
     console.log(event.target.value)
     this.setState({ 
       user: {
+        ...this.state.user,
         city: event.target.value,
-        user: this.state.user.user
       }
     })  
+  }
+
+  handleZipChange(event) {
+    console.log(event.target.value)
+    this.setState({
+      user: {
+        ...this.state.user,
+        zip: event.target.value,
+      }
+    })
   }
 
   render() {
     return(
       <div>
         <p>
-        <input onChange={this.handleUserChange}/>
-        <input onChange={this.handleCityChange}/>
+        Enter Name<input onChange={this.handleUserChange}/>
+        Enter City<input onChange={this.handleCityChange}/>
+        Enter Zip<input onChange={this.handleZipChange}/>
         </p>
         <p>
-        {this.state.user.user} is from {this.state.user.city}
+        {this.state.user.user} is from {this.state.user.city}, {this.state.user.zip}
         </p>
       </div>
     );
