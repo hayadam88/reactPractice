@@ -51,13 +51,26 @@ class App extends Component {
     })
   }
 
+  // Currying
+  handleChangeFor = (propertyName) => {
+    return (event) => {
+      this.setState({
+        user: {
+          ...this.state.user,
+          [propertyName]: event.target.value,
+        }
+      });
+    }
+  }
+
   render() {
     return(
       <div>
         <p>
-        Enter Name<input onChange={this.handleUserChange}/>
-        Enter City<input onChange={this.handleCityChange}/>
-        Enter Zip<input onChange={this.handleZipChange}/>
+        Name<input onChange={this.handleChangeFor('user')}/>
+        City<input onChange={this.handleChangeFor('city')}/>
+        Zip<input onChange={this.handleChangeFor('zip')}/>
+
         </p>
         <p>
         {this.state.user.user} is from {this.state.user.city}, {this.state.user.zip}
